@@ -17,7 +17,7 @@ class Book extends Component {
                         <div className="books-grid">
                                 <div key={book.title} className="book">
                                     <div className="book-top" 
-                                    style={{backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+                                    style={{backgroundImage: `url(${book.imageLinks.smallThumbnail})` 
                                         }}>
                                     <div className="book-shelf-changer">
                                         <ShelfChanger onUpdate={this.props.onUpdate} />
