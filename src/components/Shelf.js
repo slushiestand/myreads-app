@@ -15,7 +15,7 @@ class Shelf extends Component {
     return (
     	<div>
 	
-      		{books.map((book, index) => (<Book books={books} key={books.id} onUpdate={(shelf) => {this.update_book(book, shelf)}}
+      		{books.map((book, index) => (<Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}}
 			/>))}
       	</div>
     )

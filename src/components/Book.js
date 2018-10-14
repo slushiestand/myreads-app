@@ -4,19 +4,18 @@ import PropTypes from 'prop-types';
 
 class Book extends Component {
       static propTypes = {
-        books: PropTypes.array.isRequired,
+        book: PropTypes.object.isRequired,
     }
 
 
   render() {
-	const { books } = this.props
+	const { book } = this.props
     return (
     	<div>
 	
       		<div className="bookshelf-books">
-                        <ol className="books-grid">
-                            {books.map((book, index) =>
-                                <li key={book.title} className="book">
+                        <div className="books-grid">
+                                <div key={book.title} className="book">
                                     <div className="book-top" 
                                     style={{backgroundImage: `url(${book.imageLinks.smallThumbnail})`
                                         }}>
@@ -26,9 +25,8 @@ class Book extends Component {
                                     </div>
                                     <div className="book-title"> {book.title} </div>
                                     <div className="book-authors">{book.authors[0]} </div>
-                                </li>
-                            )}
-                        </ol>
+                                </div>
+                        </div>
                     </div>
       	</div>
     )
