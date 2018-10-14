@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # MyReads Project
 
 This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
@@ -93,4 +93,4 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 =======
 # myreads-app
->>>>>>> 78126c562bced79cbee7fe649b8c315d8591d76a
+
