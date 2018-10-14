@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
 import ShelfChanger from './ShelfChanger'
+import Book from './Book'
 import * as BooksAPI from '../utils/BooksAPI.js'
 
 class SearchBooks extends Component {
@@ -45,6 +46,7 @@ class SearchBooks extends Component {
 //Because its state has changed, the ListContacts component re-renders. 
     render() {
       const { query, searchedBooks } = this.state
+      const { books } = this.props
 		console.warn((searchedBooks[0]))
       return(
          <div className="search-books">
@@ -57,7 +59,6 @@ class SearchBooks extends Component {
                 NOTES: The search from BooksAPI is limited to a particular set of search terms.
                 You can find these search terms here:
                 https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
                 However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                 you don't find a specific author or title. Every search is limited by search terms.
             */}
@@ -69,19 +70,8 @@ class SearchBooks extends Component {
             </div>
             <div className="search-books-results">
             <ol className="books-grid"> 
-            {searchedBooks.map((book) =>
-                <li key={book.id} className="book">
-                    <div className="book-top" 
-                    style={{backgroundImage: `url(${book.imageLinks.smallThumbnail})`
-                        }}>
-                    <div className="book-shelf-changer">
-					<ShelfChanger book={book} onUpdate={this.onUpdate}/>
-                    </div>
-                    </div>
-                    <div className="book-title"> {book.title} </div>
-                    <div className="book-authors">{book.authors} </div>
-                </li>
-            )}
+            {books.map((book, index) => (<Book books={books} key={books.id} onUpdate={(shelf) => {this.update_book(book, shelf)}}
+			/>))}
             
 
 			</ol>
