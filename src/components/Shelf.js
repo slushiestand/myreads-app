@@ -8,6 +8,7 @@ class Shelf extends Component {
     }
   update_book = (book, shelf) => {
     this.props.onChange(book, shelf)
+    console.warn(book)
   }
 
   render() {
@@ -15,8 +16,7 @@ class Shelf extends Component {
     return (
     	<div>
 	
-      		{books.map((book, index) => (<Book books={books} key={books.id} onUpdate={(shelf) => {this.update_book(book, shelf)}}
-			/>))}
+      		{books.map((book, index) => (<Book books={books} key={books.id} onUpdate={()=>{this.update_book(books)}} />))}
       	</div>
     )
   }
