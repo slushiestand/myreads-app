@@ -8,12 +8,12 @@ class Book extends Component {
     }
   render() {
     const { book } = this.props
-    const {shelf} = 'none'
     return (
     	<div>
 	
       		<div className="bookshelf-books">
-                        <div className="books-grid">
+                        <ol className="books-grid">
+                            <li>
                                 <div key={book.title} className="book">
                                     <div className="book-top" 
                                     style={{backgroundImage: `url(${book.imageLinks ? book.imageLinks.smallThumbnail : null})` 
@@ -24,9 +24,9 @@ class Book extends Component {
                                     </div>
                                     <div className="book-title"> {book.title} </div>
                                     <div className="book-authors">{book.authors} </div>
-                                    <div> {book.shelf} </div>
                                 </div>
-                        </div>
+                            </li>
+                        </ol>
                     </div>
       	</div>
     )

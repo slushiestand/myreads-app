@@ -9,39 +9,38 @@ class SearchBooks extends Component {
     state= {
         query: '',
         searchedBooks: [], 
-        shelf: 'none'
     }
+
+
 
 //flow:
     //user types in input field, onChange, the API is searched and then returns the results by mapping over them. 
     //need to monitor the query in the input field and then the grid which responds to the input field, making this a controlled component. 
+    
+    //called when query is changed
     getBooks = event => {
         const query = event.target.value;
         this.setState({ query });
-
+    //search API if there is a query
        if (query) {
       BooksAPI.search(query.trim(), 20).then(books => {
         (books.length > 0 && query === this.state.query)
-          ? this.setState({ searchedBooks: books})
+          ? this.setState({ searchedBooks: this.compareBooks(books)})
           : this.setState({ searchedBooks: []});
-      });
+      }
+    );
 
       // if query is empty => reset state to default
     } else this.setState({ searchedBooks: []});
   };
      
+
  update_book = (book, shelf) => {
     this.props.onChange(book, shelf)
+    
   }
 onUpdate = (book, shelf) => {this.update_book(book, shelf)}
 
-isBookOnShelf(currentBook) {
-    let bookOnShelf = this.props.books.find((book) => {
-       book.id === currentBook.id
-    })
-    
-    return bookOnShelf
-  }
 
 
 //To recap how user input affects the ListContacts component's own state:
@@ -53,7 +52,6 @@ isBookOnShelf(currentBook) {
     render() {
       const { query, searchedBooks } = this.state
       const { book } = this.props
-		console.warn((searchedBooks[0]))
       return(
          <div className="search-books">
             <div className="search-books-bar">
@@ -76,8 +74,16 @@ isBookOnShelf(currentBook) {
             </div>
             <div className="search-books-results">
             <ol className="books-grid"> 
-                {this.state.searchedBooks.map((book) =>
-                    <Book book={book ||this.isBookOnShelf(book)} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}} 
+            {/*{this.state.searchedBooks.map((searchedBooks) => {
+                searchedBooks.shelf = "none"
+                console.warn(searchedBooks.shelf)
+                this.props.books.map((book) => {
+                    searchedBooks.id === book.id ? searchedBooks.shelf = book.shelf : ""},
+                )
+            })}  */}
+
+            {this.state.searchedBooks.map((book) =>
+                    <Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}} 
                     />)
                 }
 			</ol>
