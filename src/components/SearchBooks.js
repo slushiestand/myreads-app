@@ -8,7 +8,8 @@ class SearchBooks extends Component {
 
     state= {
         query: '',
-      	searchedBooks: []
+        searchedBooks: [], 
+        shelf: 'none'
     }
 
 //flow:
@@ -20,7 +21,7 @@ class SearchBooks extends Component {
 
        if (query) {
       BooksAPI.search(query.trim(), 20).then(books => {
-        books.length > 0
+        (books.length > 0 && query === this.state.query)
           ? this.setState({ searchedBooks: books})
           : this.setState({ searchedBooks: []});
       });
@@ -32,10 +33,13 @@ class SearchBooks extends Component {
  update_book = (book, shelf) => {
     this.props.onChange(book, shelf)
   }
-	onUpdate = (book, shelf) => {this.update_book(book, shelf)}
+onUpdate = (book, shelf) => {this.update_book(book, shelf)}
 
-     
-             
+compareBooks = (book, searchedBooks) => {
+    searchedBooks === this.props.book 
+    ? this.setState({shelf: this.props})
+    : this.setState({shelf: 'none'})
+}   
 
 //To recap how user input affects the ListContacts component's own state:
 
@@ -45,6 +49,7 @@ class SearchBooks extends Component {
 //Because its state has changed, the ListContacts component re-renders. 
     render() {
       const { query, searchedBooks } = this.state
+      const { book } = this.props
 		console.warn((searchedBooks[0]))
       return(
          <div className="search-books">
@@ -69,7 +74,7 @@ class SearchBooks extends Component {
             <div className="search-books-results">
             <ol className="books-grid"> 
             {searchedBooks.map((book) =>
-                (<Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}}
+                (<Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}} compareBooks={this.compareBooks}
                 />)
             )}
             
