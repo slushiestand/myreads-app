@@ -14,9 +14,12 @@ class Shelf extends Component {
 	const { books } = this.props
     return (
     	<div>
-	
-      		{books.map((book, index) => (<Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}}
-      />))}
+        <div className="bookshelf-books">
+            <ol className="books-grid">
+                {books.map((book, index) => (<Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}}
+                />))}
+            </ol>
+          </div>
       	</div>
     )
   }

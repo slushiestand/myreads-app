@@ -43,12 +43,10 @@ onUpdate = (book, shelf) => {this.update_book(book, shelf)}
 
 
 
-//To recap how user input affects the ListContacts component's own state:
-
 //The user enters text into the input field.
 //The onChange event listener invokes the updateQuery() function.
 //updateQuery() then calls setState(), merging in the new state to update the component's internal state.
-//Because its state has changed, the ListContacts component re-renders. 
+//Because its state has changed, the component re-renders. 
     render() {
       const { query, searchedBooks } = this.state
       const { book } = this.props
@@ -78,13 +76,18 @@ onUpdate = (book, shelf) => {this.update_book(book, shelf)}
             })}  */}
 
             {this.state.searchedBooks.map((book) =>
-                    <Book book={book} key={book.id} shelf={this.state.searchedBooks.map((searchedBooks) => {
-                        searchedBooks.shelf = "none"
+                    <Book 
+                        book={book} 
+                        key={book.id} 
+                        shelf={this.state.searchedBooks.map((searchedBooks) => {
+                            searchedBooks.shelf = "none"
                         console.warn(searchedBooks.shelf)
-                        this.props.books.map((book) => {
-                            searchedBooks.id === book.id ? searchedBooks.shelf = book.shelf : ""},
-                        )
-                    })} onUpdate={(shelf) => {this.update_book(book, shelf)}} 
+                            this.props.books.map((book) => {
+                                searchedBooks.id === book.id ? searchedBooks.shelf = book.shelf : ""},
+                            )
+                        }
+                        )} 
+                        onUpdate={(shelf) => {this.update_book(book, shelf)}} 
                     />)
                 }
 			</ol>

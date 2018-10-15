@@ -10,24 +10,19 @@ class Book extends Component {
     const { book } = this.props
     return (
     	<div>
-	
-      		<div className="bookshelf-books">
-                        <ol className="books-grid">
-                            <li>
-                                <div key={book.title} className="book">
-                                    <div className="book-top" 
-                                    style={{backgroundImage: `url(${book.imageLinks ? book.imageLinks.smallThumbnail : null})` 
-                                        }}>
-                                    <div className="book-shelf-changer">
-                                        <ShelfChanger onUpdate={this.props.onUpdate} />
-                                    </div>
-                                    </div>
-                                    <div className="book-title"> {book.title} </div>
-                                    <div className="book-authors">{book.authors} </div>
-                                </div>
-                            </li>
-                        </ol>
+            <li>
+                <div key={book.title} className="book">
+                    <div className="book-top" 
+                    style={{backgroundImage: `url(${book.imageLinks ? book.imageLinks.smallThumbnail : null})` 
+                        }}>
+                    <div className="book-shelf-changer">
+                        <ShelfChanger onUpdate={this.props.onUpdate} />
                     </div>
+                    </div>
+                    <div className="book-title"> {book.title} </div>
+                    <div className="book-authors">{book.authors} </div>
+                </div>
+            </li>
       	</div>
     )
   }
