@@ -35,11 +35,14 @@ class SearchBooks extends Component {
   }
 onUpdate = (book, shelf) => {this.update_book(book, shelf)}
 
-compareBooks = (book, searchedBooks) => {
-    searchedBooks === this.props.book 
-    ? this.setState({shelf: this.props})
-    : this.setState({shelf: 'none'})
-}   
+isBookOnShelf(currentBook) {
+    let bookOnShelf = this.props.books.find((book) => {
+       book.id === currentBook.id
+    })
+    
+    return bookOnShelf
+  }
+
 
 //To recap how user input affects the ListContacts component's own state:
 
@@ -73,12 +76,10 @@ compareBooks = (book, searchedBooks) => {
             </div>
             <div className="search-books-results">
             <ol className="books-grid"> 
-            {searchedBooks.map((book) =>
-                (<Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}} compareBooks={this.compareBooks}
-                />)
-            )}
-            
-
+                {this.state.searchedBooks.map((book) =>
+                    <Book book={book ||this.isBookOnShelf(book)} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}} 
+                    />)
+                }
 			</ol>
             </div>
 

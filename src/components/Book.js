@@ -7,7 +7,8 @@ class Book extends Component {
         book: PropTypes.object.isRequired,
     }
   render() {
-	const { book, shelf } = this.props
+    const { book } = this.props
+    const {shelf} = 'none'
     return (
     	<div>
 	
@@ -23,7 +24,7 @@ class Book extends Component {
                                     </div>
                                     <div className="book-title"> {book.title} </div>
                                     <div className="book-authors">{book.authors} </div>
-                                    <div> {console.warn(shelf)} </div>
+                                    <div> {book.shelf} </div>
                                 </div>
                         </div>
                     </div>
