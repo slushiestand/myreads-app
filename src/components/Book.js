@@ -6,8 +6,6 @@ class Book extends Component {
       static propTypes = {
         book: PropTypes.object.isRequired,
     }
-
-
   render() {
 	const { book } = this.props
     return (
@@ -24,7 +22,7 @@ class Book extends Component {
                                     </div>
                                     </div>
                                     <div className="book-title"> {book.title} </div>
-                                    <div className="book-authors">{book.authors[0]} </div>
+                                    <div className="book-authors">{book.authors} </div>
                                 </div>
                         </div>
                     </div>

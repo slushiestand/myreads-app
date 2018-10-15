@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
-import ShelfChanger from './ShelfChanger'
 import Book from './Book'
 import * as BooksAPI from '../utils/BooksAPI.js'
 
@@ -46,7 +45,6 @@ class SearchBooks extends Component {
 //Because its state has changed, the ListContacts component re-renders. 
     render() {
       const { query, searchedBooks } = this.state
-      const { books } = this.props
 		console.warn((searchedBooks[0]))
       return(
          <div className="search-books">
@@ -70,8 +68,10 @@ class SearchBooks extends Component {
             </div>
             <div className="search-books-results">
             <ol className="books-grid"> 
-            {books.map((book, index) => (<Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}}
-			/>))}
+            {searchedBooks.map((book) =>
+                (<Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}}
+                />)
+            )}
             
 
 			</ol>
