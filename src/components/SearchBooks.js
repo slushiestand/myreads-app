@@ -50,15 +50,9 @@ onUpdate = (book, shelf) => {this.update_book(book, shelf)}
 //updateQuery() then calls setState(), merging in the new state to update the component's internal state.
 //Because its state has changed, the ListContacts component re-renders. 
     render() {
-      const { query } = this.state
+      const { query, searchedBooks } = this.state
       const { book } = this.props
-      const { searchedBooks } = this.state.searchedBooks.map((searchedBooks) => {
-        searchedBooks.shelf = "none"
-        console.warn(searchedBooks.shelf)
-        this.props.books.map((book) => {
-            searchedBooks.id === book.id ? searchedBooks.shelf = book.shelf : ""},
-        )
-    })
+
       
       return(
          <div className="search-books">
@@ -84,7 +78,13 @@ onUpdate = (book, shelf) => {this.update_book(book, shelf)}
             })}  */}
 
             {this.state.searchedBooks.map((book) =>
-                    <Book book={book} key={book.id} onUpdate={(shelf) => {this.update_book(book, shelf)}} 
+                    <Book book={book} key={book.id} shelf={this.state.searchedBooks.map((searchedBooks) => {
+                        searchedBooks.shelf = "none"
+                        console.warn(searchedBooks.shelf)
+                        this.props.books.map((book) => {
+                            searchedBooks.id === book.id ? searchedBooks.shelf = book.shelf : ""},
+                        )
+                    })} onUpdate={(shelf) => {this.update_book(book, shelf)}} 
                     />)
                 }
 			</ol>
