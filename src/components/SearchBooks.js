@@ -25,15 +25,22 @@ class SearchBooks extends Component {
        if (query) {
       BooksAPI.search(query.trim(), 20).then(books => {
         (books.length > 0 && query === this.state.query)
-          ? this.setState({ searchedBooks: books})
+          ? this.setState({ searchedBooks: books}, 
+                () =>{this.state.searchedBooks.map((searchedBooks) => {
+                searchedBooks.shelf = "none";
+                 {this.props.books.map((book) => {
+                    searchedBooks.id === book.id ? searchedBooks.shelf = book.shelf : ""
+                },
+                )}
+             })}
+            ) 
           : this.setState({ searchedBooks: []});
-      }
+      },
     );
 
       // if query is empty => reset state to default
     } else this.setState({ searchedBooks: []});
   };
-     
 
  update_book = (book, shelf) => {
     this.props.onChange(book, shelf)
@@ -48,8 +55,7 @@ onUpdate = (book, shelf) => {this.update_book(book, shelf)}
 //updateQuery() then calls setState(), merging in the new state to update the component's internal state.
 //Because its state has changed, the component re-renders. 
     render() {
-      const { query, searchedBooks } = this.state
-      const { book } = this.props
+      const { query } = this.state
 
       
       return(
@@ -66,30 +72,16 @@ onUpdate = (book, shelf) => {this.update_book(book, shelf)}
             </div>
             </div>
             <div className="search-books-results">
-            <ol className="books-grid"> 
-            {/*{this.state.searchedBooks.map((searchedBooks) => {
-                searchedBooks.shelf = "none"
-                console.warn(searchedBooks.shelf)
-                this.props.books.map((book) => {
-                    searchedBooks.id === book.id ? searchedBooks.shelf = book.shelf : ""},
-                )
-            })}  */}
+            <ol className="books-grid">
 
-            {this.state.searchedBooks.map((book) =>
-                    <Book 
-                        book={book} 
-                        key={book.id} 
-                        shelf={this.state.searchedBooks.map((searchedBooks) => {
-                            searchedBooks.shelf = "none"
-                        console.warn(searchedBooks.shelf)
-                            this.props.books.map((book) => {
-                                searchedBooks.id === book.id ? searchedBooks.shelf = book.shelf : ""},
-                            )
-                        }
-                        )} 
-                        onUpdate={(shelf) => {this.update_book(book, shelf)}} 
-                    />)
-                }
+            {this.state.searchedBooks.filter((book =>
+                book.shelf !== "wantToRead, currentlyReading, read"
+            )).map((book) =>
+            <Book 
+                book={book} 
+                key={book.id} 
+                onUpdate={(shelf) => {this.update_book(book, shelf)}} 
+            />)}
 			</ol>
             </div>
 
