@@ -21,7 +21,7 @@ class SearchBooks extends Component {
     getBooks = event => {
         const query = event.target.value;
         this.setState({ query });
-    //search API if there is a query
+    //search API if there is a query and set the shelf to 
        if (query) {
       BooksAPI.search(query.trim(), 20).then(books => {
         (books.length > 0 && query === this.state.query)
