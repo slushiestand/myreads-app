@@ -46,7 +46,7 @@ class SearchBooks extends Component {
     this.props.onChange(book, shelf)
     
   }
-onUpdate = (book, shelf) => {this.update_book(book, shelf)}
+
 
 
 
@@ -56,7 +56,7 @@ onUpdate = (book, shelf) => {this.update_book(book, shelf)}
 //Because its state has changed, the component re-renders. 
     render() {
       const { query } = this.state
-
+        
       
       return(
          <div className="search-books">
@@ -79,7 +79,8 @@ onUpdate = (book, shelf) => {this.update_book(book, shelf)}
             )).map((book) =>
             <Book 
                 book={book} 
-                key={book.id} 
+                key={book.id}
+                shelf={book.shelf} 
                 onUpdate={(shelf) => {this.update_book(book, shelf)}} 
             />)}
 			</ol>

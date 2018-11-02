@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
 
+
 class ShelfChanger extends Component {
 
   // on selecting the value, assign the value to that book and then update the books. 
 	changeShelf = (e) => {
      this.props.onUpdate(e.target.value);
     }
+
   render() {
     const { book } = this.props
     console.warn(book.shelf)
