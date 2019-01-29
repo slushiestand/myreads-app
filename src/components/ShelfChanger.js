@@ -10,7 +10,6 @@ class ShelfChanger extends Component {
 
   render() {
     const { book } = this.props
-    console.warn(book.shelf)
     return (
             <div>
               <select value={book.shelf} onChange={this.changeShelf} >

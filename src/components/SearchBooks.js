@@ -10,7 +10,6 @@ class SearchBooks extends Component {
         query: '',
         searchedBooks: [], 
 
-
     }
 
 
@@ -23,7 +22,8 @@ class SearchBooks extends Component {
     getBooks = event => {
         const query = event.target.value;
         this.setState({ query });
-        
+       
+
     //search API if there is a query and set the shelf to 
        if (query) {
       BooksAPI.search(query.trim(), 20).then(books => {
@@ -33,12 +33,11 @@ class SearchBooks extends Component {
                 searchedBooks.shelf = "none";
                 
                  {this.props.books.map((book) => {
-                    //something in here is broken because the searchedBooks isn't matching the bookid so the shelf isn't getting rendered
                     searchedBooks.id == book.id ? searchedBooks.shelf = book.shelf : ""
                 },
                 )}
-             })}
-            ) 
+             })})
+             
           : this.setState({ searchedBooks: []});
       },
     );
@@ -62,7 +61,9 @@ class SearchBooks extends Component {
 //Because its state has changed, the component re-renders. 
     render() {
       const { query } = this.state
+      const { books } = this.props
       console.warn('The shelf is: ' + this.state.searchedBooks.shelf)
+      console.warn(books.shelf)
       
       return(
          <div className="search-books">
@@ -83,7 +84,7 @@ class SearchBooks extends Component {
             {this.state.searchedBooks.filter((book =>
                 book.shelf !== "wantToRead, currentlyReading, read"
                 
-            )).map((book) =>
+            )).map((book) => 
             <Book 
                 book={book} 
                 key={book.id}
