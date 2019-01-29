@@ -33,7 +33,7 @@ This structure was selected to be able to use the Book and ShelfChanger componen
 ## Authors
 
 * **Jessie Bogart**
-**Initial work** - [Udacity Nanodegree - React Fundamentals](https://github.com/udacity/reactnd-project-myreads-starter)
+* **Initial work** - [Udacity Nanodegree - React Fundamentals](https://github.com/udacity/reactnd-project-myreads-starter)
 
 ## Acknowledgments
 
