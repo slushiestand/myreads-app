@@ -11,7 +11,7 @@ This is the final project to complete the React Fundamentals Nanodegree course b
 ### Project Overview
 
 This project is structured as follows:
-
+```bash
 App.js
 |---Shelves.js
 |    |---Book.js
@@ -19,7 +19,7 @@ App.js
 |---SearchBooks.js
 |   |---Book.js
 |-------|---ShelfChanger.js
-
+```
 This structure was selected to be able to use the Book and ShelfChanger components in both the SearchBooks and Shelves components for ease of maintaining state.
 
 ## Built With
@@ -32,7 +32,7 @@ This structure was selected to be able to use the Book and ShelfChanger componen
 
 ## Authors
 
-* **Jessie Lowery**
+* **Jessie Bogart**
 **Initial work** - [Udacity Nanodegree - React Fundamentals](https://github.com/udacity/reactnd-project-myreads-starter)
 
 ## Acknowledgments
